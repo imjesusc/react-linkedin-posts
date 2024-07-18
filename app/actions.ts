@@ -17,11 +17,21 @@ export const signOut = async (): Promise<void> => {
   redirect("/");
 };
 
-export const getSession = async (): Promise<User | null> => {
+export const getSession = async (): Promise<{
+  token: string;
+  user: User;
+} | null> => {
   const cookiesStore = cookies();
   const hasUser = cookiesStore.has("_user_98_");
+  const token = cookiesStore.get("_acces_token_98_")?.value;
 
-  if (!hasUser) return null;
+  if (!hasUser || !token) {
+    return null;
+  }
   const user = JSON.parse(cookiesStore.get("_user_98_")?.value ?? "");
-  return user;
+
+  return {
+    token: token,
+    user: user,
+  };
 };
