@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import "../styles/style.css";
 export const metadata: Metadata = {
   title: "LinkedIn Posts",
   description: "Manage personal LinkedIn posts",
