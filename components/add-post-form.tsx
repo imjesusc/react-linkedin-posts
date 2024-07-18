@@ -16,9 +16,6 @@ export function AddPostForm() {
     >
       <label htmlFor="visibility">Visibility</label>
       <select id="visibility" name="visibility" required>
-        <option value="" disabled selected>
-          Select visibility
-        </option>
         {Object.values(PostVisibilityEnum).map((visibility) => (
           <option key={visibility} value={visibility}>
             {visibility}
