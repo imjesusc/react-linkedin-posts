@@ -35,3 +35,19 @@ export const getSession = async (): Promise<{
     user: user,
   };
 };
+
+export const getEnvironments = async (): Promise<{
+  apiUrl: string;
+  clientId: string;
+  clientSecret: string;
+  redirectUri: string;
+  linkedinState: string;
+}> => {
+  return {
+    apiUrl: process.env.LINKEDIN_API_URL || "",
+    clientId: process.env.LINKEDIN_CLIENT_ID || "",
+    clientSecret: process.env.LINKEDIN_CLIENT_SECRET || "",
+    redirectUri: process.env.LINKEDIN_REDIRECT_URI || "",
+    linkedinState: process.env.LINKEDIN_STATE || "",
+  };
+};
