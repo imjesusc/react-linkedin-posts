@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/posts',
+        destination: `${process.env.LINKEDIN_API_URL}/rest/posts`,
+      },
+    ]
+  },
+}
 
-export default nextConfig;
+export default nextConfig
