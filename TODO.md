@@ -1,5 +1,0 @@
-- [x] Identificar la api de posts de linkedin
-- [x] Iniciar proyecto de nextjs
-- [ ] Integrar la api de posts
-- [ ] Darle estilos a la pagina
-- [ ] Desplegar en vercel
