@@ -1,18 +1,22 @@
-"use server";
-
+import { getSession } from "@/app/actions";
 import { PostDistributionFeedEnum } from "@/enums/post-distribution-feed.enum";
 import { PostLifecycleEnum } from "@/enums/post-lifecycle.enum";
 import { PostVisibilityEnum } from "@/enums/post-visibility.enum";
+import { FailCreatePostException } from "@/models/create-post-error-exception";
 import { Post } from "@/models/post.model";
-import { getSession } from "./actions";
 
-export async function createPost(formData: FormData) {
+export async function create({
+  commentary,
+  visibility,
+}: {
+  commentary: string;
+  visibility: PostVisibilityEnum;
+}): Promise<void> {
   const session = await getSession();
   const userId = session?.user.id;
   const accessToken = session?.token;
 
-  const commentary = formData.get("commentary") as string;
-  const visibility = formData.get("visibility") as PostVisibilityEnum;
+  if (!userId || !accessToken) return;
 
   const newPost: Post = {
     author: `urn:li:person:${userId}`,
@@ -38,14 +42,10 @@ export async function createPost(formData: FormData) {
     body: JSON.stringify(newPost),
   };
 
-  const response = await fetch(
-    `${process.env.LINKEDIN_API_URL}/rest/posts`,
-    OPTIONS,
-  );
-
+  const response = await fetch("/api/posts", OPTIONS);
   const isSucces = response.headers.get("x-restli-id");
 
   if (!isSucces) {
-    throw new Error("Error creating post");
+    throw new FailCreatePostException();
   }
 }
