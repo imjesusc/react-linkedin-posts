@@ -26,5 +26,4 @@ Como resultado, he mejorado mis habilidades en el manejo de APIs, la
 autenticación de usuarios y la estructuración de proyectos.
 
 ## Video
-
-https://res.cloudinary.com/dqhk6i49b/video/upload/v1721441382/preview_yhdkc9.mp4
+https://github.com/user-attachments/assets/a0cd8b88-2ffd-4bac-bbab-30d1ad8bbc7b
